@@ -1,0 +1,44 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.navegacao a, .navegacao .nav-button {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navegacao a:hover, .navegacao .nav-button:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.cart-button {
+  background-color: #1976d2;
+  color: rgb(0, 0, 0) !important;
+}
+
+.cart-button:hover {
+  background-color: #115293;
+}
