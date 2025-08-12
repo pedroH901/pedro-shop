@@ -16,8 +16,21 @@ function LoginModal({ onClose }) {
     if (error) {
       setMensagemErro('Login falhou: ' + error.message);
     } else {
-      alert('Login realizado com sucesso!');
+      // Apenas fechamos o modal. O App.js vai reagir ao login.
       onClose();
+    }
+  };
+
+  const handleRegister = async () => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password: senha,
+    });
+    if (error) {
+      setMensagemErro('Erro no cadastro: ' + error.message);
+    } else {
+      // Informa o usuário sobre a necessidade de confirmação
+      setMensagemErro('Usuário registrado! Verifique seu email para confirmação.');
     }
   };
 
@@ -39,21 +52,9 @@ function LoginModal({ onClose }) {
         />
         {mensagemErro && <p style={{ color: 'red', fontSize: '14px' }}>{mensagemErro}</p>}
         <div className="modal-actions">
-          <button
-  onClick={async () => {
-    const { error } = await supabase.auth.signUp({
-      email,
-      password: senha,
-    });
-    if (error) {
-      setMensagemErro('Erro no cadastro: ' + error.message);
-    } else {
-      alert('Usuário registrado! Verifique seu email para confirmação.');
-    }
-  }}
->
-  Registrar
-</button>
+          <button onClick={handleRegister}>
+            Registrar
+          </button>
           <button className="btn-close" onClick={onClose}>Fechar</button>
           <button className="btn-login" onClick={handleLogin}>Entrar</button>
         </div>
@@ -62,5 +63,6 @@ function LoginModal({ onClose }) {
   );
 }
 
+// A função duplicada foi removida daqui.
 
 export default LoginModal;

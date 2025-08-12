@@ -1,8 +1,8 @@
 import React from 'react';
 import './Header.css';
 
-// O Header recebe as funções para abrir o carrinho e o login, e a contagem de itens
-function Header({ onAbrirCarrinho, onAbrirLogin, contagemCarrinho }) {
+// O Header agora recebe a sessão do usuário e a função de logout
+function Header({ onAbrirCarrinho, onAbrirLogin, contagemCarrinho, sessao, onLogout }) {
   return (
     <header className="app-header">
       <div className="logo">
@@ -11,7 +11,17 @@ function Header({ onAbrirCarrinho, onAbrirLogin, contagemCarrinho }) {
       <nav className="navegacao">
         <a href="#inicio">Início</a>
         <a href="#produtos">Produtos</a>
-        <button className="nav-button" onClick={onAbrirLogin}>Login</button>
+
+        {/* Lógica condicional: mostra Login ou Logout/email */}
+        {sessao ? (
+          <>
+            <span className="user-email">{sessao.user.email}</span>
+            <button className="nav-button" onClick={onLogout}>Logout</button>
+          </>
+        ) : (
+          <button className="nav-button" onClick={onAbrirLogin}>Login</button>
+        )}
+        
         <button className="nav-button cart-button" onClick={onAbrirCarrinho}>
           Carrinho ({contagemCarrinho})
         </button>
